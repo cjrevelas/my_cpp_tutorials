@@ -1,0 +1,7 @@
+30	60	20	50	40	10  						(start checking from 0)
+10	60	20	50	40	30  (30 swapped with 10)    (start checking from 1)
+10	20	60	50	40	30	(60 swapped with 20)	(start checking from 2)
+10	20	30	50	40	60	(60 swapped with 30)    (start checking from 3)
+10	20	30	40	50	60	(50 swapped woth 40)    (start checking from 4)
+10	20	30	40	50	60	(50 swapped with 50)    (start checking from 5)
+10	20	30	40	50	60	(60 swapped with 60)

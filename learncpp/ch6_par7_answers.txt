@@ -1,0 +1,28 @@
+Question 1:
+
+0012FF60
+7
+0012FF60
+7
+
+0012FF60
+9
+0012FF60
+9
+
+0012FF54
+3
+0012FF54
+3
+
+4 bytes (i.e. 32 bits)
+2 bytes (i.e. 16 bits)
+
+
+
+Question 2
+
+A dereferenced pointed cannot hold a variable's memory address.
+It should be:
+
+ptr = &value;
