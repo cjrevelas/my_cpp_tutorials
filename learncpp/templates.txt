@@ -1,0 +1,33 @@
+Template parameter declaration: template <typename T>
+
+Placeholder types can be given almost any name, but it is customary in cpp to name them by T
+
+Keywords "typename" and "class" can be used interchangeably
+
+For multiple function template parameters: template <typename T1, typename T2>
+
+The replicated function with actual types is called a function template instance
+
+A template non-type parameter is a special type of parameter that does not sunstitute for a type,
+but is instead replaced by a value, e.g.:
+    template <typename T, int size>
+	
+Function template specialization is used when we want to implement a templated function slightly 
+differently for a specific data type
+
+February: 600
+March:    621 + 600 + 340
+April:    621 + 600
+
+We can declare template classes with exactly the same way as template functions
+
+Full or partial template class specialization is possible
+
+It is also possible to use a partial class template specialization to define a special version of the class
+, which works with pointer values
+
+Member functions defined outside the class need their own template declaration:
+    template <typename T>
+	int Class_name<T>::member_function_name() const{
+	    member_function_body;
+	}
