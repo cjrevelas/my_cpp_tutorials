@@ -1,0 +1,48 @@
+#include <iostream>
+#include <deque>
+
+void printKMax(int arr[], int nn, int kk){
+    std::deque<int> deq(kk);
+
+    for (int ii=0; ii<kk; ++ii){
+        while ((!deq.empty()) && (arr[ii]>=arr[deq.back()])){
+            deq.pop_back();
+        }
+
+        deq.push_back(ii);
+    }
+
+    for (int ii=kk; ii<nn; ++ii){
+
+        std::cout << arr[deq.front()] << ' ';
+
+        while((!deq.empty()) && (deq.front()<=ii-kk)){
+            deq.pop_front();
+        }
+
+        while ((!deq.empty()) && (arr[ii]>=arr[deq.back()])){
+            deq.pop_back();
+        }
+
+        deq.push_back(ii);
+    }
+
+    std::cout << arr[deq.front()] << std::endl;
+}
+
+int main(){
+
+    int tt;
+    std::cin >> tt;
+    while(tt>0) {
+        int nn, kk;
+        std::cin >> nn >> kk;
+        int ii;
+        int arr[nn];
+        for(ii=0;ii<nn;ii++)
+              std::cin >> arr[ii];
+        printKMax(arr, nn, kk);
+        tt--;
+      }
+      return 0;
+}
