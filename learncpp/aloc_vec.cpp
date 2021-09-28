@@ -3,22 +3,21 @@
 #include <vector>
 
 int main(){
+  int m = 5;
+  int n = 4;
 
-    int m = 5;
-    int n = 4;
+  std::vector<int> A(m*n);
 
-    std::vector<int> A(m*n);
+  for (int i=0; i<m; ++i){
+      for (int j=0; j<n; ++j){
 
-    for (int i=0; i<m; ++i){
-        for (int j=0; j<n; ++j){
+          A[j+i*m] = rand() % 100;
 
-            A[j+i*m] = rand() % 100;
+          std::cout << A[j+i*m] << ' ';
+      }
 
-            std::cout << A[j+i*m] << " ";
-        }
+      std::cout << '\n';
+  }
 
-        std::cout << std::endl;
-    }
-
-    return 0;
+  return 0;
 }
