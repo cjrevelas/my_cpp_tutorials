@@ -1,87 +1,105 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
-namespace cjr {
-    template<typename T>
-    class vector {
-    private:
-        int m_size{ 0 };
-        int m_capacity{ 0 };
-        T* m_array = nullptr;
+#include <iostream>
+#include <cstdlib>
+#include <vector>
 
-    public:
-        vector(int capacity) : m_size(capacity), m_capacity(capacity) {
-            m_array = new T[capacity];
-            if (m_array) {
-                std::cout << "vector was successfully allocated with capacity: " << m_capacity << std::endl;
-            }
-            this->initialize();
-        }
+//TODO: add a set_values method
+//TODO: add a method which returns the number of rows/columns of the matrix
+//TODO: overload +/- operators (with dimensionality check)
+//TODO: add number/matrix multiplication (with dimensionality check)
+//TODO: add matrix/matrix multiplication (with dimensionality check)
 
-        vector(void) {
-            std::cout << "a simple vector was created" << std::endl;
-        }
+template<class T>
+class Matrix {
 
-        ~vector() {
-            this->deAllocate();
-        }
+ private:
+  int rows_;
+  int cols_;
 
-        void initialize() {
-            for (int ii = 0; ii < (int)this->m_size; ++ii) {
-                m_array[ii] = 1;
-            }
-        }
+  T *pointer_to_row_;
+  T **pointer_to_row_pointers_;
 
-        void print() {
-            std::cout << "vector values are:" << std::endl;
-            for (int ii = 0; ii < (int)this->m_size; ++ii) {
-                std::cout << m_array[ii] << ' ';
-            }
-            std::cout << std::endl;
-        }
+ public:
+  Matrix(int rows = 0, int cols = 0);
+  ~Matrix();
 
-        void reAllocate(int newCapacity) {
-            T* m_temp_array = new T[newCapacity];
+  Matrix<T> &operator=(const Matrix<T> &matrix);
 
-            if (newCapacity < m_size) { m_size = newCapacity; }
-            
-            for (int ii = 0; ii < (int)this->m_size; ++ii) {
-                m_temp_array[ii] = std::move(this->m_array[ii]);
-            }
+  void resize(int, int);
+  void initialize();
+  void print() const;
 
-            m_array = m_temp_array;
-            m_capacity = newCapacity;
-        }
-
-        const T& operator[](int index) const {
-            return m_array[index];
-        }
-
-        T& operator[](int index) {
-            return m_array[index];
-        }
-
-        int Size() const { return m_size; }
-
-        int Capacity() const { return m_capacity; }
-
-        void push_back(const T& newItem) {
-            if (m_size > m_capacity) {
-                reAllocate(m_capacity + m_capacity / 2);
-            }
-
-            m_array[m_size] = newItem;
-            ++m_size;
-        }
-
-        void deAllocate() {
-            delete[] m_array;
-            m_array = nullptr;
-            if (!m_array) {
-                std::cout << "vector was successfully deallocated!";
-            }
-        }
-    };
+  //overloading the parenthesis operator for being able to access the elements of the matrix
+  T &operator()(int row, int col) const { return pointer_to_row_pointers_[row][col]; }
 };
+
+template<class T>
+Matrix<T>::Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
+  pointer_to_row_pointers_ = new T *[rows_];
+
+  for (int ii = 0; ii < rows_; ++ii) {
+    pointer_to_row_ = new T[cols_];
+
+    pointer_to_row_pointers_[ii] = pointer_to_row_;
+  }
+}
+
+template<class T>
+void Matrix<T>::resize(int rows, int cols) {
+  rows_ = rows;
+  cols_ = cols;
+
+  pointer_to_row_pointers_ = new T *[rows_];
+
+  for (int ii = 0; ii < rows_; ++ii) {
+    pointer_to_row_ = new T[cols_];
+
+    pointer_to_row_pointers_[ii] = pointer_to_row_;
+  }
+}
+
+template<class T>
+Matrix<T> &Matrix<T>::operator=(const Matrix<T> &matrix){
+  // do the copy
+  for (int ii=0; ii<3; ++ii) {
+    for (int jj=0; jj<3; ++jj){
+      this->pointer_to_row_pointers_[ii][jj] = matrix.pointer_to_row_pointers_[ii][jj];
+    }
+  }
+
+  // return the existing object so that we chain this operator
+  return *this;
+}
+
+template<class T>
+void Matrix<T>::initialize() {
+  for (int ii = 0; ii < rows_; ++ii) {
+    for (int jj = 0; jj < cols_; ++jj) {
+      pointer_to_row_pointers_[ii][jj] = 0;
+    }
+  }
+}
+
+template<class T>
+void Matrix<T>::print() const {
+  for (int ii = 0; ii < rows_; ++ii) {
+    for (int jj = 0; jj < cols_; ++jj) {
+      std::cout << pointer_to_row_pointers_[ii][jj] << ' ';
+    }
+    std::cout << '\n';
+  }
+  std::cout << '\n';
+}
+
+template<class T>
+Matrix<T>::~Matrix() {
+  for (int ii=0; ii<rows_; ii++) {
+    delete[] pointer_to_row_pointers_[ii];
+  }
+
+  delete[] pointer_to_row_pointers_;
+}
 
 #endif

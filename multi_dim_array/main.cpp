@@ -1,36 +1,19 @@
 #include <iostream>
-#include "vector.h"
+#include "matrix.h"
+
+Matrix<int> &get_matrix(Matrix<int> &matrix) { return matrix; }
 
 int main(){
-    //instantiation check
-    cjr::vector<int> vec(4);
-    std::cout << std::endl;
+  Matrix<int> matrix(3,2);
 
-    vec.print();
-    std::cout << "size: " << vec.Size() << ", capacity: " << vec.Capacity() << std::endl;
-    std::cout << std::endl;
+  matrix.print();
+  std::cin.get();
 
-    //reAllocation check
-    vec.reAllocate(6);
-    vec.initialize();
-    vec.print();
-    std::cout << "size: " << vec.Size() << ", capacity: " << vec.Capacity() << std::endl;
-    std::cout << std::endl;
-    
-    //indexing check
-    vec[2] = 2;
-    vec.print();
-    std::cout << "size: " << vec.Size() << ", capacity: " << vec.Capacity() << std::endl;
-    std::cout << std::endl;
-    
-    //push_back check
-    vec.push_back(4);
-    vec.print();
-    std::cout << "size: " << vec.Size() << ", capacity: " << vec.Capacity() << std::endl;
-    std::cout << std::endl;
+  matrix(0,0) = 1;
 
-    //clean-up and exit
-    vec.deAllocate();
-    std::cin.get();
-    return 0;
+  int a = matrix(0, 0);
+
+  std::cout << '\n';
+  matrix.print();
+  std::cin.get();
 }
