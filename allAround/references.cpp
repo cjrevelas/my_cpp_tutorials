@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 // Declare Widget class
 class Widget {
@@ -27,10 +28,13 @@ void ff(Widget &&);       // R-value reference
 void ff(const Widget &&); // R-value reference to const
 
 template<typename T>
-void ff(T &&); // Funtion template with R-value reference to const
+void ff(T &&); // Funtion template with a forwarding/universal reference
 
 template<typename T>
 void ff(const T &&); // Function template with R-value reference to const
+
+template<typename ...Args>
+std::unique_ptr<Widget> create(Args &&...args); // Variadic function template with a forwarding/universal reference
 
 int main() {
 
@@ -72,4 +76,9 @@ void ff(T &&) {
 template<typename T>
 void ff(const T &&) {
   std::cout << "calling funtion 6: templated function with R-value reference to const\n\n";
+}
+
+template<typename ...Args>
+std::unique_ptr<Widget> create(Args &&...args) {
+  return std::make_unique<Widget>(std::forward<Args>(args)...);
 }
