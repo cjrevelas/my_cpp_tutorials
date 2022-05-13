@@ -119,7 +119,7 @@ node<T> *BinTree<T>::search(T key) {
 
 template<typename T>
 node<T> *BinTree<T>::search(T key, node<T> *leaf) {
-  if (key = leaf->key_value) {
+  if (key == leaf->key_value) {
     return leaf;
   } else if (key < leaf->key_value) {
     search(key, leaf->left);
