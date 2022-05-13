@@ -3,9 +3,9 @@
 
 template<typename T>
 struct node {
-	T key_value;
-	node* left;
-	node* right;
+  T key_value;
+  node *left;
+  node *right;
 };
 
 #endif
