@@ -2,84 +2,91 @@
 #include <list>
 
 class HashTable{
-private:
-    int capacity;
-    std::list<int> *table; //this is an array of lists -- declaration
+ private:
+  int capacity;
+  std::list<int> *table; // Array of lists -- declaration
 
-public:
-    HashTable(int V);
+ public:
+  HashTable(int V);
 
-    void insertItem(int key, int data);
+  void insertItem(int key, int data);
 
-    void deleteItem(int key);
+  void deleteItem(int key);
 
-    int checkPrime(int n){
-        if (n == 1 || n == 0){return 0;}
-        for (int i = 2; i < n / 2; i++){
-            if (n % i == 0){return 0;}
-        }
-        return 1;
+  int checkPrime(int nn) {
+    if (nn == 1 || nn == 0) { return 0; }
+
+    for (int ii=2; ii<nn/2; ii++) {
+      if (nn % ii == 0) { return 0; }
     }
 
-    int getPrime(int n){
-        if (n % 2 == 0){n++;}
-        while (!checkPrime(n)){n += 2;}
-        return n;
-    }
+    return 1;
+  }
 
-    int hashFunction(int key){return (key % capacity);}
+  int getPrime(int nn){
+    if (nn % 2 == 0) { ++nn; }
 
-    void displayHash();
+    while (!checkPrime(nn)) { nn += 2; }
+
+    return nn;
+  }
+
+  int hashFunction(int key) { return (key % capacity); }
+
+  void displayHash();
 };
 
-HashTable::HashTable(int c){
-    int size = getPrime(c); //=7
-    this->capacity = size;
-    table = new std::list<int>[capacity]; //this is an array of lists -- definition
+HashTable::HashTable(int cc) {
+  int size = getPrime(cc); //=7
+  this->capacity = size;
+  table = new std::list<int>[capacity]; // Array of lists -- definition
 }
 
-void HashTable::insertItem(int key, int data){
-    int index = hashFunction(key);
-    table[index].push_back(data);
+void HashTable::insertItem(int key, int data) {
+  int index = hashFunction(key);
+  table[index].push_back(data);
 }
 
 void HashTable::deleteItem(int key){
-    int index = hashFunction(key); //=5
+  int index = hashFunction(key); //=5
 
-    std::list<int>::iterator i;
-    for (i=table[index].begin(); i!=table[index].end(); i++){
-        if (*i == key){break;}
+  std::list<int>::iterator ii;
+  for (ii=table[index].begin(); ii!=table[index].end(); ++ii) {
+    if (*ii == key) {
+      break;
     }
-    //std::cout << "key to be erased: " << *i << std::endl;
-    if (i!=table[index].end()){table[index].erase(i);}
+  }
+
+  if (ii!=table[index].end()) {
+    table[index].erase(ii);
+  }
 }
 
 void HashTable::displayHash(){
-    for (int i = 0; i < capacity; i++){
-        std::cout << "table[" << i << "]";
-        for (auto x : table[i]){
-            std::cout << " --> " << x;
-        }
-        std::cout << std::endl;
+  for (int ii = 0; ii < capacity; ++ii){
+    std::cout << "table[" << ii << "]";
+    for (auto xx : table[ii]){
+      std::cout << " --> " << xx;
     }
+    std::cout << '\n';
+  }
 }
 
 int main(){
-    int key[] = {231, 321, 212, 321, 433, 262};
-    int data[] = {123, 432, 523, 43, 423, 111};
-    int size = sizeof(key) / sizeof(key[0]);
+  int key[]  = {231, 321, 212, 321, 433, 262};
+  int data[] = {123, 432, 523, 43, 423, 111};
+  int size   = sizeof(key) / sizeof(key[0]);
 
-    HashTable h(size);
+  HashTable hh(size);
 
-    for (int i = 0; i < size; i++){
-        h.insertItem(key[i], data[i]);
-    }
+  for (int ii = 0; ii < size; ++ii){
+    hh.insertItem(key[ii], data[ii]);
+  }
 
+  hh.displayHash();
+  std::cout << "==================================================\n";
+  hh.deleteItem(12);
+  hh.displayHash();
 
-    h.displayHash();
-    std::cout << "==================================================\n";
-    h.deleteItem(12);
-    h.displayHash();
-
-    return 0;
+  return 0;
 }

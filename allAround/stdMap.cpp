@@ -1,36 +1,33 @@
 #include <iostream>
 #include <map>
 
-void print_map(const std::string& message, const std::map<std::string, int>& m) {
+void print_map(const std::string &message, const std::map<std::string,int> &mm) {
+  std::cout << message;
 
-	std::cout << message;
+  for (const std::pair<std::string, int> pp : mm) {
+    std::cout << pp.first << " = " << pp.second << "; ";
+  }
 
-	for (const std::pair<std::string, int> p : m) {
-		std::cout << p.first << " = " << p.second << "; ";
-	}
+  //the following for-loop is equivalent and uses structured bindings (from cppreference.com)
+  //for (const auto &[key, value] : mm) {
+  //  std::cout << key << " = " << value << "; ";
+  //}
 
-	//the following for-loop is equivalent (from cppreference.com)
-	//for (const auto& [key, value] : m) {     //auto here works without an umbersand as well (!)
-	//	std::cout << key << " = " << value << "; ";
-	//}
-
-	std::cout << std::endl;
-
+  std::cout << '\n';
 }
 
-int main(){
+int main() {
+  std::map<std::string, int> map{ {"CPU",10}, {"GPU",15}, {"RAM",20} };
 
-	std::map<std::string, int> m{ {"CPU",10}, {"GPU",15}, {"RAM",20} };
+  print_map("initial map: ", map);
 
-	print_map("initial map: ", m);
+  map["CPU"] = 25;
+  map["SSD"] = 30;
 
-	m["CPU"] = 25;
-	m["SSD"] = 30;
+  print_map("updated map: ", map);
 
-	print_map("updated map: ", m);
+  std::cin.get();
 
-	std::cin.get();
-
-	return 0;
+  return 0;
 }
 

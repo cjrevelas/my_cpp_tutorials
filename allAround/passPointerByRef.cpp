@@ -11,17 +11,11 @@
 int gVar(2);
 
 // ...and a function whose parameter is passed by address
-void passByAdress(int *ptrToVar) {
-  ptrToVar = &gVar;
-}
+void passByAdress(int *ptrToVar) { ptrToVar = &gVar; }
 
-void passPointerByAddress(int **ptrToVar, int *newAddress) { // This is allowed in both C and C++
-  *ptrToVar = newAddress;
-}
+void passPointerByAddress(int **ptrToVar, int *newAddress) { *ptrToVar = newAddress; } // This is allowed in both C and C++
 
-void passPointerByRef(int *&ptrToVar) {  // This is allowed only in C++
- ptrToVar = &gVar;
-}
+void passPointerByRef(int *&ptrToVar) { ptrToVar = &gVar; } // This is allowed only in C++
 
 int main() {
   int lVar(5); //local variable of the main function

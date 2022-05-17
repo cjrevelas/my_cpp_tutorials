@@ -1,23 +1,23 @@
 #include <iostream>
 
-int getValue(void* a) {
-	int* temp = *(static_cast<int**>(a));
-	
-	return *temp;
+int getValue(void *ii) {
+  int *temp = *(static_cast<int **>(ii));
+
+  return *temp;
 }
 
 int main() {
-	int x = 2;
-	void* pointer1 = &x;
-	void* pointer2 = &pointer1;
+  int xx = 2;
+  void *pointer1 = &xx;
+  void *pointer2 = &pointer1;
 
-	std::cout << x << ' ' << pointer1 << ' ' << pointer2 << std::endl;
-	std::cout << *static_cast<int*>(pointer1) << ' ' << **static_cast<int**>(pointer2) << std::endl;;
+  std::cout << xx << ' ' << pointer1 << ' ' << pointer2 << '\n';
+  std::cout << *(static_cast<int *>(pointer1)) << ' ' << **(static_cast<int **>(pointer2)) << '\n';
 
-	int y = getValue(pointer2);
+  int yy = getValue(pointer2);
 
-	std::cout << y << ' ' << &y << std::endl;
-	std::cin.get();
-	
-	return 0;
+  std::cout << yy << ' ' << &yy << '\n';
+  std::cin.get();
+
+  return 0;
 }
