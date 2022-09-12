@@ -1,12 +1,14 @@
-class Shape{
-public:
-    Shape(){}
+#include <iostream>
 
-    virtual std::ostream& print(std::ostream &out) const = 0;
+class Shape {
+ public:
+  Shape(){}
 
-    friend std::ostream& operator<<(std::ostream &out, const Shape &shape){
-        return shape.print(out);
-    }
+  virtual std::ostream& print(std::ostream &out) const = 0;
 
-    virtual ~Shape(){}
+  friend std::ostream& operator<<(std::ostream &out, const Shape &shape){
+    return shape.print(out);
+  }
+
+  virtual ~Shape() {}
 };
