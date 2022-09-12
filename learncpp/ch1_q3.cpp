@@ -1,7 +1,7 @@
 #include <iostream>
 
-const int& add(const int &x, const int &y);
-const int& subtract(const int &x, const int &y);
+const int add(const int &x, const int &y);
+const int subtract(const int &x, const int &y);
 
 int main()
 {
@@ -20,13 +20,13 @@ int main()
 }
 
 
-const int& add(const int &x, const int &y)
+const int add(const int &x, const int &y)
 {
 	return(x+y);
 }
 
 
-const int& subtract(const int &x, const int &y)
+const int subtract(const int &x, const int &y)
 {
 	return(x-y);
 }
