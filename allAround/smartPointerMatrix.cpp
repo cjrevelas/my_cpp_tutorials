@@ -10,8 +10,11 @@ class Matrix {
   int rows_;
   int cols_;
 
- std::unique_ptr<T []> pointer_to_row_;
- std::unique_ptr<std::unique_ptr<T []> []> pointer_to_row_pointers_;
+  using smp1d = std::unique_ptr<T []>;
+  using smp2d = std::unique_ptr<std::unique_ptr<T []> []>;
+
+ smp1d pointer_to_row_;
+ smp2d pointer_to_row_pointers_;
 
  public:
   Matrix(int rows = 0, int cols = 0);
@@ -28,7 +31,7 @@ class Matrix {
 
 template<class T>
 Matrix<T>::Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
-  pointer_to_row_pointers_ = std::make_unique<std::unique_ptr<T []> []>(rows_);
+  pointer_to_row_pointers_ = std::make_unique<smp1d []>(rows_);
 
   for (int ii = 0; ii < rows_; ++ii) {
     pointer_to_row_ = std::make_unique<T []>(cols_);
@@ -43,7 +46,7 @@ void Matrix<T>::resize(int rows, int cols) {
   rows_ = rows;
   cols_ = cols;
 
-  pointer_to_row_pointers_ = std::make_unique<std::unique_ptr<T []> []>(rows_);
+  pointer_to_row_pointers_ = std::make_unique<smp1d []>(rows_);
 
   for (int ii = 0; ii < rows_; ++ii) {
     pointer_to_row_ = std::make_unique<T []>(cols_);
@@ -87,13 +90,6 @@ void Matrix<T>::print() const {
 
 template<class T>
 Matrix<T>::~Matrix() {}
-//  for (int ii=0; ii<rows_; ii++) {
-//    delete[] pointer_to_row_pointers_[ii];
-//  }
-
- // delete[] pointer_to_row_pointers_;
-///}
-
 } // CJR
 
 
