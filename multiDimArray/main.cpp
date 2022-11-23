@@ -1,6 +1,7 @@
 #include <iostream>
 //#include "matrixRawPointers2D.h"
-#include "matrixSmartPointers2D.h"
+//#include "matrixSmartPointers2D.h"
+#include "matrixRawPointers1D.h"
 
 
 int main(){
@@ -10,7 +11,6 @@ int main(){
   std::cin.get();
 
   matrix(0,0) = 1;
-
   int a = matrix(0,0);
 
   std::cout << '\n';
@@ -20,13 +20,8 @@ int main(){
   matrix.resize(4,4);
   matrix.initialize();
   matrix.print();
+
   std::cout << "everything fine\n";
 
- // CJR::Matrix<int> matrix;
- // matrix.resize(4,4);
- // matrix.initialize();
- // matrix.print();
- // std::cout << "everything fine!\n";
- //
- return 0;
+  return 0;
 }
