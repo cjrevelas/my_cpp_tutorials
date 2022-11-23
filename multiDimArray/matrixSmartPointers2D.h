@@ -1,8 +1,6 @@
 #include <iostream>
 #include <memory>
 
-namespace CJR {
-
 template<class T>
 class Matrix {
 
@@ -13,8 +11,8 @@ class Matrix {
   using smp1d = std::unique_ptr<T []>;
   using smp2d = std::unique_ptr<std::unique_ptr<T []> []>;
 
- smp1d pointer_to_row_;
- smp2d pointer_to_row_pointers_;
+  smp1d pointer_to_row_;
+  smp2d pointer_to_row_pointers_;
 
  public:
   Matrix(int rows = 0, int cols = 0);
@@ -90,16 +88,15 @@ void Matrix<T>::print() const {
 
 template<class T>
 Matrix<T>::~Matrix() {}
-} // CJR
 
 
-int main() {
+//int main() {
 
-  CJR::Matrix<int> matrix;
-  matrix.resize(4,4);
-  matrix.initialize();
-  matrix.print();
-  std::cout << "everything fine!\n";
+//  Matrix<int> matrix;
+//  matrix.resize(4,4);
+//  matrix.initialize();
+//  matrix.print();
+//  std::cout << "everything fine!\n";
 
-  return 0;
-}
+//  return 0;
+//}

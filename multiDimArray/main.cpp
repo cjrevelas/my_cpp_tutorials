@@ -1,19 +1,32 @@
 #include <iostream>
-#include "matrix.h"
+//#include "matrixRawPointers2D.h"
+#include "matrixSmartPointers2D.h"
 
-Matrix<int> &get_matrix(Matrix<int> &matrix) { return matrix; }
 
 int main(){
   Matrix<int> matrix(3,2);
-
   matrix.print();
+
   std::cin.get();
 
   matrix(0,0) = 1;
 
-  int a = matrix(0, 0);
+  int a = matrix(0,0);
 
   std::cout << '\n';
   matrix.print();
   std::cin.get();
+
+  matrix.resize(4,4);
+  matrix.initialize();
+  matrix.print();
+  std::cout << "everything fine\n";
+
+ // CJR::Matrix<int> matrix;
+ // matrix.resize(4,4);
+ // matrix.initialize();
+ // matrix.print();
+ // std::cout << "everything fine!\n";
+ //
+ return 0;
 }

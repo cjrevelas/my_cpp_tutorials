@@ -9,7 +9,6 @@
 //TODO: add a method which returns the number of rows/columns of the matrix
 //TODO: overload +/- operators (with dimensionality check)
 //TODO: add number/matrix multiplication (with dimensionality check)
-//TODO: add matrix/matrix multiplication (with dimensionality check)
 
 template<class T>
 class Matrix {
