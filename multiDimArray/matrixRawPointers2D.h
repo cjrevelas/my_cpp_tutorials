@@ -1,18 +1,12 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef MATRIX_RAW_POINTERS_2D_H
+#define MATRIX_RAW_POINTERS_2D_H
 
 #include <iostream>
 #include <cstdlib>
 #include <vector>
 
-//TODO: add a set_values method
-//TODO: add a method which returns the number of rows/columns of the matrix
-//TODO: overload +/- operators (with dimensionality check)
-//TODO: add number/matrix multiplication (with dimensionality check)
-
 template<class T>
 class Matrix {
-
  private:
   int rows_;
   int cols_;
@@ -30,7 +24,6 @@ class Matrix {
   void initialize();
   void print() const;
 
-  //overloading the parenthesis operator for being able to access the elements of the matrix
   T &operator()(int row, int col) const { return pointer_to_row_pointers_[row][col]; }
 };
 
@@ -62,14 +55,14 @@ void Matrix<T>::resize(int rows, int cols) {
 template<class T>
 Matrix<T> &Matrix<T>::operator=(const Matrix<T> &matrix){
   // do the copy
-  for (int ii=0; ii<3; ++ii) {
-    for (int jj=0; jj<3; ++jj){
+  for (int ii=0; ii<rows_; ++ii) {
+    for (int jj=0; jj<cols_; ++jj){
       this->pointer_to_row_pointers_[ii][jj] = matrix.pointer_to_row_pointers_[ii][jj];
     }
   }
 
   // return the existing object so that we chain this operator
-  return *this;
+  return (*this);
 }
 
 template<class T>
@@ -101,4 +94,4 @@ Matrix<T>::~Matrix() {
   delete[] pointer_to_row_pointers_;
 }
 
-#endif
+#endif // MATRIX_RAW_POINTERS_2D_H

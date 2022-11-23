@@ -1,3 +1,6 @@
+#ifndef MATRIX_SMART_POINTERS_2D_H
+#define MATRIX_SMART_POINTERS_2D_H
+
 #include <iostream>
 #include <memory>
 
@@ -56,14 +59,14 @@ void Matrix<T>::resize(int rows, int cols) {
 template<class T>
 Matrix<T> &Matrix<T>::operator=(const Matrix<T> &matrix){
   // do the copy
-  for (int ii=0; ii<3; ++ii) {
-    for (int jj=0; jj<3; ++jj){
+  for (int ii=0; ii<rows_; ++ii) {
+    for (int jj=0; jj<cols_; ++jj){
       this->pointer_to_row_pointers_[ii][jj] = matrix.pointer_to_row_pointers_[ii][jj];
     }
   }
 
   // return the existing object so that we chain this operator
-  return *this;
+  return (*this);
 }
 
 template<class T>
@@ -89,14 +92,4 @@ void Matrix<T>::print() const {
 template<class T>
 Matrix<T>::~Matrix() {}
 
-
-//int main() {
-
-//  Matrix<int> matrix;
-//  matrix.resize(4,4);
-//  matrix.initialize();
-//  matrix.print();
-//  std::cout << "everything fine!\n";
-
-//  return 0;
-//}
+#endif // MATRIX_SMART_POINTERS_2D_H
