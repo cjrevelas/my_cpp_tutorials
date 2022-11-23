@@ -1,7 +1,8 @@
 #include <iostream>
 //#include "matrixRawPointers2D.h"
 //#include "matrixSmartPointers2D.h"
-#include "matrixRawPointers1D.h"
+//#include "matrixRawPointers1D.h"
+#include "matrixSmartPointers1D.h"
 
 
 int main(){
