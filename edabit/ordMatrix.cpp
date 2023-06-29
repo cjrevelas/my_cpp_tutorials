@@ -1,32 +1,36 @@
 #include <iostream>
 #include <vector>
 
-void orderedMatrix(const int& a, const int& b);
+void orderedMatrix(const int &aa, const int &bb);
 
-int main(){
-    int num_rows, num_cols;
-    scanf("%d%d", &num_rows, &num_cols);
+int main() {
+  int num_rows, num_cols;
 
-    orderedMatrix(num_rows, num_cols);
-    return 0;
+  scanf("%d%d", &num_rows, &num_cols);
+
+  orderedMatrix(num_rows, num_cols);
+
+  return 0;
 }
 
-void orderedMatrix(const int& a, const int& b){
-    std::vector<std::vector<int>> matrix;
-    std::vector<int> vec;
+void orderedMatrix(const int &aa, const int &bb) {
+  std::vector<std::vector<int>> matrix;
+  std::vector<int> vec;
 
-    for (int ii=0; ii<a; ++ii){
-        for (int jj=0; jj<b; ++jj){
-            vec.push_back(b*ii+jj+1);
-        }
-        matrix.push_back(vec);
-        vec.clear();
+  for (int ii=0; ii<aa; ++ii){
+    for (int jj=0; jj<bb; ++jj){
+      vec.push_back(bb*ii+jj+1);
     }
 
-    for(int ii=0; ii<a; ++ii){
-        for (int jj=0; jj<b; ++jj){
-            std::cout << matrix[ii][jj] << ' ';
-        }
-        std::cout << std::endl;
+    matrix.push_back(vec);
+    vec.clear();
+  }
+
+  for(int ii=0; ii<aa; ++ii) {
+    for (int jj=0; jj<bb; ++jj) {
+      std::cout << matrix[ii][jj] << ' ';
     }
+
+    std::cout << '\n';
+  }
 }
