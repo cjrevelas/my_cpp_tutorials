@@ -6,8 +6,8 @@ class Auto_ptr {
 
  public:
   Auto_ptr(int *ptr) : m_ptr{ptr} {
-    //std::cout << "Resource acquired" << std::endl;
-    //std::cout << m_ptr << std::endl;
+    //std::cout << "Resource acquired\n";
+    //std::cout << m_ptr << '\n';
   }
 
   ~Auto_ptr() {
@@ -15,7 +15,7 @@ class Auto_ptr {
     m_ptr = NULL;
 
     //if (!m_ptr) {
-    //  std::cout << "Resource deleted" << std::endl;
+    //  std::cout << "Resource deleted\n";
     //}
   }
 };
@@ -24,14 +24,14 @@ class Auto_ptr {
 int main() {
   int num_entries = 5;
 
-  //no memory leak
+  // No memory leak
   while(1){
-    Auto_ptr array1(new int[num_entries]); //memory allocation via a smart pointer
+    Auto_ptr array1(new int[num_entries]); // Memory allocation via a smart pointer
   }
 
-  //memory leak
+  // Memory leak
   //while(1){
-  //  int *array2(new int[num_entries]); //memory allocation via a dump pointer
+  //  int *array2(new int[num_entries]); // Memory allocation via a dump pointer
   //}
 
   return 0;

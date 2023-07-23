@@ -9,7 +9,7 @@ class metaClass{
 };
 
 template<>
-class metaClass<0>{ // base case of recursion template call
+class metaClass<0>{ // Base case of recursion template call
  public:
   enum{
       val = 1

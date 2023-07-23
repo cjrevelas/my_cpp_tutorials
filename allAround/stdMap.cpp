@@ -8,7 +8,7 @@ void print_map(const std::string &message, const std::map<std::string,int> &mm) 
     std::cout << pp.first << " = " << pp.second << "; ";
   }
 
-  //the following for-loop is equivalent and uses structured bindings (from cppreference.com)
+  // The following for-loop is equivalent and uses structured bindings (check cppreference.com)
   //for (const auto &[key, value] : mm) {
   //  std::cout << key << " = " << value << "; ";
   //}
