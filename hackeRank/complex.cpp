@@ -2,56 +2,62 @@
 
 #include<iostream>
 
-using namespace std;
+class Complex {
+ public:
+  int aa, bb;
 
-class Complex
-{
-public:
-    int a,b;
-    void input(string s)
-    {
-        int v1=0;
-        int i=0;
-        while(s[i]!='+')
-        {
-            v1=v1*10+s[i]-'0';
-            i++;
-        }
-        while(s[i]==' ' || s[i]=='+'||s[i]=='i')
-        {
-            i++;
-        }
-        int v2=0;
-        while(i<s.length())
-        {
-            v2=v2*10+s[i]-'0';
-            i++;
-        }
-        a=v1;
-        b=v2;
+  void input(const std::string &ss) {
+    int v1 = 0;
+    int ii = 0;
+
+    while(ss[ii] != '+') {
+      v1 = v1*10 + ss[ii] - '0';
+      ii++;
     }
+
+    while(ss[ii]==' ' || ss[ii]=='+' || ss[ii]=='i') {
+      ii++;
+    }
+
+    int v2=0;
+
+    while(ii<ss.length()) {
+      v2 = v2*10 + ss[ii] - '0';
+      ii++;
+    }
+
+    aa = v1;
+    bb = v2;
+  }
 };
 
-Complex operator+(Complex& c1, Complex& c2){
-    Complex summ;
-    summ.a = c1.a + c2.a;
-    summ.b = c1.b + c2.b;
-    return summ;
+Complex operator+(const Complex &c1, const Complex &c2){
+  Complex summ;
+  summ.aa = c1.aa + c2.aa;
+  summ.bb = c1.bb + c2.bb;
+
+  return summ;
 }
 
-std::ostream& operator<<(std::ostream& out, Complex& comp){
-    out << comp.a << "+i" << comp.b;
-    return out;
+std::ostream &operator<<(std::ostream &out, const Complex &comp){
+  out << comp.aa << "+i" << comp.bb;
+
+  return out;
 }
 
-int main()
-{
-    Complex x,y;
-    string s1,s2;
-    cin>>s1;
-    cin>>s2;
-    x.input(s1);
-    y.input(s2);
-    Complex z=x+y;
-    cout<<z<<endl;
+int main() {
+  Complex xx, yy;
+  std::string s1, s2;
+
+  std::cin >> s1;
+  std::cin >> s2;
+
+  xx.input(s1);
+  yy.input(s2);
+
+  Complex zz = xx + yy;
+
+  std::cout << zz << '\n';
+
+  return 0;
 }

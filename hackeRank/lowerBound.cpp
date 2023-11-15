@@ -5,32 +5,33 @@
 #include <algorithm>
 
 int main() {
-    int num_integers;
-    std::cin >> num_integers;
+  int numInts;
+  std::cin >> numInts;
 
-    std::vector<int> integers;
-    int temp;
-    for (int ii=0; ii<num_integers; ++ii){
-        std::cin >> temp;
-        integers.push_back(temp);
-    } 
+  std::vector<int> integers;
+  int temp;
 
-    int numQueries;
-    std::cin >> numQueries;
+  for (int ii=0; ii<numInts; ++ii){
+    std::cin >> temp;
+    integers.push_back(temp);
+  }
 
-    int number;
-    for (int ii=0; ii<numQueries; ++ii){
-        std::cin >> number;
+  int numQueries;
+  std::cin >> numQueries;
 
-        if (std::binary_search(integers.begin(), integers.end(), number)){
-            std::cout << "Yes ";
-            std::cout << std::lower_bound(integers.begin(), integers.end(), number) - integers.begin() + 1;
-        }else{
-            std::cout << "No ";
-            std::cout << std::lower_bound(integers.begin(), integers.end(), number) - integers.begin()+ 1;
-        }
+  int number;
+  for (int ii=0; ii<numQueries; ++ii){
+    std::cin >> number;
 
-        std::cout << std::endl;
+    if (std::binary_search(integers.begin(), integers.end(), number)){
+      std::cout << "Yes ";
+      std::cout << std::lower_bound(integers.begin(), integers.end(), number) - integers.begin() + 1;
+    }else{
+      std::cout << "No ";
+      std::cout << std::lower_bound(integers.begin(), integers.end(), number) - integers.begin()+ 1;
     }
+
+    std::cout << '\n';
+  }
     return 0;
 }

@@ -5,99 +5,101 @@
 #include <algorithm>
 #include <string>
 
-class Person{
-protected:
-    std::string m_name;
-    int m_age;
+class Person {
+ protected:
+  std::string name_;
+  int age_;
 
-public:
-    Person(){}
+ public:
+  Person(){}
 
-    virtual void getdata(){}
-    virtual void putdata(){}
+  virtual void GetData(){}
+  virtual void PutData(){}
 
-    virtual ~Person(){}
+  virtual ~Person(){}
 };
 
 
-class Student : public Person{
-private:
-    int m_id;
-    static int idGen;
-    std::vector<int> m_marks;
+class Student : public Person {
+ private:
+  int id_;
+  static int idGen;
+  std::vector<int> marks_;
 
-public:
-    Student(){
-        Person();
-        m_id = ++idGen;
+ public:
+  Student() {
+    id_ = ++idGen;
+  }
+
+  virtual void GetData(){
+    std::cin >> name_ >> age_;
+    int temp;
+    for (int ii=0; ii<6; ++ii){
+      std::cin >> temp;
+      marks_.push_back(temp);
     }
+    std::cin.ignore(11000,'\n');
+  }
 
-    virtual void getdata(){
-        std::cin >> m_name >> m_age;
-        int temp;
-        for (int ii=0; ii<6; ++ii){
-            std::cin >> temp;
-            m_marks.push_back(temp);
-        }
-        std::cin.ignore(11000,'\n');
+  virtual void PutData(){
+    int sum = 0;
+    for (int ii = 0; ii<marks_.size(); ++ii){
+      sum += marks_[ii];
     }
+    std::cout << name_ << ' ' << age_ << ' ' << sum << ' ' << id_ << '\n';
+  }
 
-    virtual void putdata(){
-        int sum = 0;
-        for (int ii = 0; ii<m_marks.size(); ++ii){
-            sum += m_marks[ii];
-        }
-        std::cout << m_name << ' ' << m_age << ' ' << sum << ' ' << m_id << std::endl;
-    }
-
-    virtual ~Student(){}
+  virtual ~Student(){}
 };
 
 
-class Professor : public Person{
-private:
-    int m_pubs, m_id;
-    static int idGen;
+class Professor : public Person {
+ private:
+  int pubs_, id_;
+  static int idGen;
 
-public:
-    Professor(){
-        Person();
-        m_id = ++idGen;
-    }
+ public:
+  Professor(){
+    id_ = ++idGen;
+  }
 
-    virtual void getdata(){
-        std::cin >> m_name >> m_age >> m_pubs;
-        std::cin.ignore(11000,'\n');
-    }
+  virtual void GetData(){
+    std::cin >> name_ >> age_ >> pubs_;
+    std::cin.ignore(11000,'\n');
+  }
 
-    virtual void putdata(){
-        std::cout << m_name << ' ' << m_age << ' ' << m_pubs << ' ' << m_id << std::endl;
-    }
+  virtual void PutData() {
+    std::cout << name_ << ' ' << age_ << ' ' << pubs_ << ' ' << id_ << '\n';
+  }
 
-    virtual ~Professor(){}
+  virtual ~Professor(){}
 };
 
-int Professor::idGen=0;
-int Student::idGen=0;
+int Professor::idGen = 0;
+int Student::idGen   = 0;
 
 int main(){
-    int n, val;
-    std::cin>>n;
-    Person *per[n];
+  int nn, val;
+  std::cin >> nn;
+  Person *per[nn];
 
-    for(int i = 0;i < n;i++){
+  for (int ii=0; ii<nn; ii++) {
 
-        std::cin>>val;
-        if(val == 1){
-            per[i] = new Professor;
-        }
-        else per[i] = new Student;
+    std::cin >> val;
 
-        per[i]->getdata();
+    if (val == 1) {
+      per[ii] = new Professor;
+    }
+    else {
+      per[ii] = new Student;
     }
 
-    for(int i=0;i<n;i++)
-        per[i]->putdata();
+    per[ii]->GetData();
+  }
 
-    return 0;
+  for (int ii=0; ii<nn; ii++) {
+    per[ii]->PutData();
+  }
+
+  return 0;
 }
