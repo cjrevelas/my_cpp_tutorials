@@ -1,7 +1,7 @@
 #ifndef VECTOR3D_H
 #define VECTOR3D_H
 
-#include "Point3d.h" // for declaring Point3d::moveByVector() as a friend function
+#include "point3d.h" // for declaring Point3d::moveByVector() as a friend function
 
 class Vector3d
 {
