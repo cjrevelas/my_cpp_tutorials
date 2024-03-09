@@ -18,8 +18,8 @@ int main() {
   return 0;
 }
 
-int readInteger() {
-  int num;
+auto readInteger() -> int {
+  int num = 0;
 
   std::cin >> num;
 
