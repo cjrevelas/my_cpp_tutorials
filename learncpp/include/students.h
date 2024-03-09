@@ -1,5 +1,5 @@
-#ifndef STUDENT
-#define STUDENT
+#ifndef STUDENTS
+#define STUDENTS
 
 #include <string>
 
