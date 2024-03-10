@@ -19,10 +19,12 @@ class Matrix {
   ~Matrix();
 
   Matrix<T> &operator=(const Matrix<T> &matrix);
+  Matrix<T> &operator+(const Matrix<T> &matrix);
 
-  void resize(int, int);
-  void initialize();
-  void print() const;
+  void Resize(int, int);
+  void InitZero();
+  void InitRandom();
+  void Print() const;
 
   T &operator()(int row, int col) const { return pointer_[row * cols_ + col]; }
 };
@@ -31,12 +33,7 @@ template<class T>
 Matrix<T>::Matrix(int rows, int cols) : rows_(rows), cols_(cols) { pointer_ = std::make_unique<T []>(rows_ * cols_); }
 
 template<class T>
-void Matrix<T>::resize(int rows, int cols) {
-  rows_ = rows;
-  cols_ = cols;
-
-  pointer_ = std::make_unique<T []>(rows_ * cols_);
-}
+Matrix<T>::~Matrix() {}
 
 template<class T>
 Matrix<T> &Matrix<T>::operator=(const Matrix<T> &matrix){
@@ -52,7 +49,16 @@ Matrix<T> &Matrix<T>::operator=(const Matrix<T> &matrix){
 }
 
 template<class T>
-void Matrix<T>::initialize() {
+void Matrix<T>::Resize(int rows, int cols) {
+  rows_ = rows;
+  cols_ = cols;
+
+  pointer_ = std::make_unique<T []>(rows_ * cols_);
+}
+
+
+template<class T>
+void Matrix<T>::InitZero() {
   for (int ii = 0; ii < rows_; ++ii) {
     for (int jj = 0; jj < cols_; ++jj) {
       pointer_[ii * cols_ + jj] = 0;
@@ -61,7 +67,16 @@ void Matrix<T>::initialize() {
 }
 
 template<class T>
-void Matrix<T>::print() const {
+void Matrix<T>::InitRandom() {
+  for (int ii = 0; ii < rows_; ++ii) {
+    for (int jj = 0; jj < cols_; ++jj) {
+      pointer_[ii * cols_ + jj] = rand() % 100;
+    }
+  }
+}
+
+template<class T>
+void Matrix<T>::Print() const {
   for (int ii = 0; ii < rows_; ++ii) {
     for (int jj = 0; jj < cols_; ++jj) {
       std::cout << pointer_[ii * cols_ + jj] << ' ';
@@ -72,6 +87,14 @@ void Matrix<T>::print() const {
 }
 
 template<class T>
-Matrix<T>::~Matrix() {}
+Matrix<T> &Matrix<T>::operator+(const Matrix<T> &matrix) {
+  for (int ii=0; ii<rows_; ++ii) {
+    for (int jj=0; jj<cols_; ++jj) {
+      this->pointer_[ii * cols_ + jj] += matrix.pointer_[ii * cols_ + jj];
+    }
+  }
+
+  return (*this);
+}
 
 #endif // MATRIX_SMART_POINTERS_1D_H

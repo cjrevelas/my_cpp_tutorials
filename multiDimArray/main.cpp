@@ -7,7 +7,7 @@
 
 int main(){
   Matrix<int> matrix(3,2);
-  matrix.print();
+  matrix.Print();
 
   std::cin.get();
 
@@ -15,14 +15,30 @@ int main(){
   int a = matrix(0,0);
 
   std::cout << '\n';
-  matrix.print();
+
+  matrix.Print();
   std::cin.get();
 
-  matrix.resize(4,4);
-  matrix.initialize();
-  matrix.print();
+  matrix.Resize(4,4);
+  matrix.InitZero();
+  matrix.Print();
 
-  std::cout << "everything fine\n";
+  Matrix<int> m1(3,2);
+  Matrix<int> m2(3,2);
+  Matrix<int> m3(3,2);
+
+  std::cout << '\n';
+
+  m1.InitRandom();
+  m2.InitRandom();
+
+  m1.Print();
+  m2.Print();
+
+  m3 = m1 + m2;
+  m3.Print();
+
+  std::cout << "Everything fine\n";
 
   return 0;
 }
