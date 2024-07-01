@@ -1,5 +1,7 @@
 // Definition of a binary tree node
+#include <iostream>
 #include <algorithm>
+#include <vector>
 
 struct TreeNode {
   int val_;
@@ -19,6 +21,25 @@ class Solution {
       int depth_right = maxDepth(root->right_);
 
       return std::max(depth_left, depth_right) + 1;
+    }
+
+    void printTree(TreeNode *root) {
+      if (root != nullptr) {
+        std::cout << "node: " << root->val_;
+        if (root->left_ != nullptr && root->right_ != nullptr) {
+          std::cout << ", left: " << root->left_->val_ << ", right: " << root->right_->val_ << '\n';
+        } else {
+          std::cout << ", left: empty" << ", right: empty"  << '\n';
+        }
+
+        if (root->left_ != nullptr) {
+          printTree(root->left_);
+        }
+
+        if (root->right_ != nullptr) {
+          printTree(root->right_);
+        }
+      }
     }
 };
 
