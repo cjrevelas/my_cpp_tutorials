@@ -1,44 +1,37 @@
-#include <iostream>
 #include <cmath>
+#include <iostream>
 
-enum ErrorCode                 //Not a C++11 compiler, so the "enum class" option is not possible.
-{
-	ERROR_SUCCESS = 0,
-	ERROR_NEGATIVE_NUMBER = -1,
+enum ErrorCode { // If compiler does not support C++11, the "enum class" option is not possible
+  ERROR_SUCCESS = 0,
+  ERROR_NEGATIVE_NUMBER = -1,
 };
 
-ErrorCode doSomething(int x_value)
-{
-	if (x_value < 0)
-	{
-		return ERROR_NEGATIVE_NUMBER;
-	}
+ErrorCode doSomething(int value) {
+  if (value < 0) {
+    return ERROR_NEGATIVE_NUMBER;
+  }
 
-	return ERROR_SUCCESS;
-
+  return ERROR_SUCCESS;
 }
 
-int main()
-{
-tryAgain:
+int main() {
 
-	std::cout << "Enter a positive number" << "\n";
-	int x;
-	std::cin >> x;
+  tryAgain:
 
-	if (doSomething(x) == ERROR_NEGATIVE_NUMBER)
-	{
-		std::cout << "You entered a negative number! Try again.\n";
-		goto tryAgain;
-	}
-	else
-	{
-		std::cout << "Nice job bro!\n";
-		long double y;
-		y = sqrt(static_cast<long double>(x));
+  std::cout << "Enter a positive number" << '\n';
+  int xx;
+  std::cin >> xx;
 
-		std::cout << "The square root of the entered number" << x << "is:" << y << "\n";
-	}
+  if (doSomething(xx) == ERROR_NEGATIVE_NUMBER) {
+    std::cout << "You entered a negative number! Try again.\n";
+    goto tryAgain;
+  } else {
+    std::cout << "Good job\n";
+    long double yy;
+    yy = sqrt(static_cast<long double>(xx));
 
-	return 0;
+    std::cout << "The square root of number " << xx << " is: " << yy << '\n';
+  }
+
+  return 0;
 }
