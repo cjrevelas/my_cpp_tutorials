@@ -1,3 +1,6 @@
+#ifndef CARS_H
+#define CARS_H
+
 #include <iostream>
 #include <string>
 
@@ -38,3 +41,5 @@ std::ostream &operator<<(std::ostream &out, const Car &c) {
   out << "(" << c.make_ << ", " << c.model_ << ")";
   return out;
 }
+
+#endif // CARS_H

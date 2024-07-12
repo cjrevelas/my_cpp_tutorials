@@ -1,3 +1,6 @@
+#ifndef ANIMALS_H
+#define ANIMALS_H 
+
 #include <string>
 
 class Animal {
@@ -21,3 +24,5 @@ class Dog : public Animal {
  public:
   Dog(std::string name) : Animal(name, "Woof") {}
 };
+
+#endif // ANIMALS_H

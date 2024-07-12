@@ -5,4 +5,4 @@ namespace constants{
     constexpr double g = 9.8;
 }
 
-#endif
+#endif // MYCONSTANTS_H

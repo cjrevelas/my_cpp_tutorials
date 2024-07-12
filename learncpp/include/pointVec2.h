@@ -90,4 +90,4 @@ bool Point3d::IsEqual(const Point3d &point) const {
   }
 }
 
-#endif
+#endif // POINTVEC2_H

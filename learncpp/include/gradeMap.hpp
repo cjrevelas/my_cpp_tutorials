@@ -1,3 +1,6 @@
+#ifndef GRADEMAP_H
+#define GRADEMAP_H
+
 #include <vector>
 #include <string>
 
@@ -31,3 +34,5 @@ char &GradeMap::operator[](const std::string &studentName) {
   // Return the grade component of the added (last) element
   return map_.back().grade_;
 }
+
+#endif // GRADEMAP_H

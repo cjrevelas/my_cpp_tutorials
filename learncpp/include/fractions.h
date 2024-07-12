@@ -1,3 +1,6 @@
+#ifndef FRACTIONS_H
+#define FRACTIONS_H
+
 #include <iostream>
 
 class Fraction {
@@ -64,3 +67,5 @@ std::ostream &operator<<(std::ostream &out, Fraction &fraction) {
 
   return out;
 }
+
+#endif // FRACTIONS_H

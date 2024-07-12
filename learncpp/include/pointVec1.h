@@ -84,4 +84,4 @@ void Point3d::MoveByVector(const Vector3d &vv) {
   z_ += vv.z_;
 }
 
-#endif
+#endif // POINTVEC1_H
